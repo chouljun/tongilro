@@ -1,285 +1,906 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>현대자동차 통일로대리점 — 우수 카마스터와의 신차 상담</title>
-  <meta name="description" content="신차 상담은 사람이 절반입니다. 현대자동차 통일로대리점은 자체 기준을 통과한 우수 카마스터가 견적부터 출고 이후까지 전담합니다. 신차 견적·전기차 보조금·상담 신청." />
-  <meta property="og:title" content="현대자동차 통일로대리점 — 우수 카마스터와의 신차 상담" />
-  <meta property="og:description" content="차를 고르셨다면, 이제 사람을 고를 차례입니다. 통일로대리점의 우수 카마스터를 만나보세요." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23002C5F'/%3E%3Cpath d='M12 32h24' stroke='%237FDBF0' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M44 32h8' stroke='%2300AAD2' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-  <link rel="stylesheet" href="css/style.css?v=2" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="현대자동차 통일로대리점. 차종 선택부터 구매 계획까지 전문 카마스터가 설계해 드립니다. 대표번호 031-962-7244">
+<meta name="theme-color" content="#002C5F">
+<title>현대자동차 통일로대리점 | 신차 견적·시승·출고 상담</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* ==============================
+   1. 변수 · 초기화
+============================== */
+:root{
+  /* ── 현대자동차 공식 CI 전용색상 (hyundai.com/kr/ko/info/ci/ci-color) ──
+     이 6개는 공식 지정값이므로 임의로 바꾸지 마십시오. */
+  --navy:#002C5F;        /* Hyundai Blue      PMS 654C        */
+  --sand:#F6F3F2;        /* Hyundai Light Sand                */
+  --sand-deep:#E4DCD3;   /* Hyundai Sand      PMS Warm Gray 1C */
+  --gold:#A36B4F;        /* Hyundai Gold      PMS 876C        */
+  --active:#00AAD2;      /* Active Blue       PMS 312C        */
+  --sky:#AACAE6;         /* Sky Blue          PMS 277C        */
+  --red:#E63312;         /* Active Red        PMS 2347C       */
+  /* ── 아래는 CI 색이 아닌 파생·UI 전용 값 ── */
+  --navy-dark:#001F45;
+  --navy-hover:#013B7C;
+  --active-tint:#DFF3FA;
+  --active-ink:#00688A;
+  --sand-line:#E8E0D8;
+  --ink:#151A21;
+  --body:#3D4450;
+  --muted:#69707C;
+  --line:#E2E6EB;
+  --bg:#FFFFFF;
+  --bg-alt:#F4F6F9;
+  --tint:#E9EFF6;
+  --ph-bg:#EDEFF3;
+  --ph-line:#C7CDD6;
+  --ph-text:#828B98;
+  --radius:10px;
+  --header-h:64px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Malgun Gothic", sans-serif;
+  color:var(--body);
+  background:var(--bg);
+  line-height:1.7;
+  font-size:16px;
+  word-break:keep-all;
+  padding-top:var(--header-h);
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+button{font:inherit;cursor:pointer;background:none;border:0;color:inherit}
+:focus-visible{outline:2px solid var(--navy);outline-offset:2px;border-radius:4px}
+::selection{background:var(--navy);color:#fff}
+
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--navy);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;
+}
+.skip-link:focus{left:0}
+
+.container{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* ==============================
+   2. 공통 요소
+============================== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  height:48px;padding:0 22px;border-radius:8px;
+  font-size:15px;font-weight:600;letter-spacing:-0.01em;
+  border:1px solid transparent;transition:background-color .18s, border-color .18s, color .18s;
+  white-space:nowrap;
+}
+.btn--primary{background:var(--navy);color:#fff}
+.btn--primary:hover{background:var(--navy-hover)}
+.btn--line{background:#fff;color:var(--navy);border-color:var(--navy)}
+.btn--line:hover{background:var(--tint)}
+.btn--ghost{background:transparent;color:var(--navy);border-color:rgba(0,44,95,.45)}
+.btn--ghost:hover{border-color:var(--navy);background:rgba(0,44,95,.06)}
+.btn--sm{height:40px;padding:0 16px;font-size:14px}
+.btn svg{flex:none}
+
+.section{padding:64px 0}
+.section--alt{background:var(--bg-alt)}
+.section-head{margin-bottom:32px}
+/* 히어로 눈썹과 같은 패턴을 섹션에도 적용해 "새 장의 시작"을 표시 */
+.section-head__eyebrow{
+  color:var(--active-ink);font-size:15px;font-weight:700;
+  letter-spacing:.04em;margin-bottom:10px;
+}
+.section-head h2{
+  color:var(--navy);font-size:clamp(1.375rem, 3vw, 1.75rem);
+  font-weight:700;letter-spacing:-0.02em;line-height:1.35;
+}
+.section-head p{margin-top:10px;color:var(--muted);font-size:15px}
+.section-note{margin-top:24px;color:var(--muted);font-size:14px}
+
+/* 이미지 플레이스홀더 */
+.ph{
+  display:flex;align-items:center;justify-content:center;
+  background:var(--ph-bg);border:1px dashed var(--ph-line);border-radius:8px;
+  color:var(--ph-text);font-size:14px;font-weight:500;text-align:center;padding:8px;
+}
+.ph--car{aspect-ratio:16/9}
+.ph--portrait{aspect-ratio:1/1}
+.ph--map{aspect-ratio:4/3;border-radius:var(--radius)}
+
+.chip{
+  display:inline-block;background:var(--tint);color:var(--navy);
+  font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;
+}
+
+/* ==============================
+   3. 고정 헤더
+============================== */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:var(--header-h);background:#fff;border-bottom:1px solid var(--line);
+  transition:box-shadow .2s;
+}
+.site-header.is-scrolled{box-shadow:0 2px 12px rgba(21,26,33,.08)}
+.site-header .container{
+  height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand__logo{flex:none;width:auto;height:17px}
+/* 좁은 화면에서는 워드마크를 잘라 심볼만 노출 (상호가 말줄임되는 것 방지) */
+@media (max-width: 959px){
+  .brand__logo{width:43px;height:20px;object-fit:cover;object-position:left center}
+}
+.brand__divider{
+  flex:none;width:1px;height:16px;background:var(--line);
+}
+.brand__name{
+  color:var(--ink);font-weight:700;font-size:15px;letter-spacing:-0.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.gnb{display:none}
+.header-actions{display:flex;align-items:center;gap:10px}
+
+/* ==============================
+   4. 히어로
+============================== */
+.hero{
+  position:relative;overflow:hidden;color:var(--ink);padding:64px 0 52px;
+  background-color:#F6F3F2;
+  background-image:
+    radial-gradient(120% 90% at 18% -12%, rgba(255,255,255,.85) 0%, rgba(255,255,255,0) 55%),
+    linear-gradient(180deg, #FBF9F8 0%, #F6F3F2 44%, #EBE5DE 82%, #F5F1ED 100%);
+}
+/* 1단(모바일) 배치에서 CTA 버튼과 차량 사이 간격이 되는 값 */
+.hero-grid{display:grid;gap:36px}
+.hero__eyebrow{
+  color:#5F5449;font-size:15px;font-weight:700;letter-spacing:.04em;margin-bottom:20px;
+}
+.hero h1{
+  font-size:clamp(1.75rem, 3.3vw + 0.5rem, 2.9375rem);
+  font-weight:800;letter-spacing:-0.03em;line-height:1.24;
+  color:var(--navy);
+}
+/* 모바일에서 h1 이 3줄로 밀리는 것 방지.
+   clamp 의 하한이 28px 고정이라 좁은 화면에서도 줄지 않아 긴 행이 넘칩니다.
+   기준이 되는 행은 2행 "전문 카마스터가 설계해 드립니다"(28px 기준 343.4px)이며,
+   28px 를 그대로 쓰려면 뷰포트가 383px 이상이어야 합니다.
+   그 아래에서는 뷰포트에 비례해 줄여 PC와 같이 2줄을 유지합니다. (Pretendard 기준 산출)
+   ※ h1 문구를 고치면 이 값도 다시 계산해야 합니다. */
+@media (max-width: 389px){
+  .hero h1{font-size:min(28px, 7.9vw - 3.2px)}
+}
+/* Active Blue(#00AAD2) 원색은 Light Sand 배경에서 명암비 2.48:1 로 대제목 기준(3:1)에
+   미달하므로, 같은 계열의 어두운 파생값을 글자색으로 사용합니다. (5.68:1) */
+.hero h1 .accent{color:var(--active-ink)}
+/* 헤드라인 바로 아래 실적 근거 한 줄. 설명문과 같은 서체·크기·색으로 두고 굵기로만 구분합니다. */
+.hero__proof{
+  margin-top:20px;
+  color:#55524B;font-size:clamp(0.9375rem, 2vw, 1.0625rem);
+  font-weight:700;line-height:1.6;max-width:560px;
+}
+.hero__sub{margin-top:20px;color:#55524B;font-size:clamp(0.9375rem, 2vw, 1.0625rem);line-height:1.75;max-width:560px}
+/* 모바일에서는 설명문을 한 단계 줄여 실적 문구·헤드라인과의 위계를 더 벌립니다. */
+@media (max-width: 767px){
+  .hero__sub{font-size:14px;line-height:1.7}
+}
+.hero__cta{margin-top:32px;display:flex;flex-wrap:wrap;gap:10px}
+/* 히어로 CTA 는 페이지의 주 행동이라 공용 .btn 보다 크게 (공용 .btn 은 그대로 둠) */
+.hero__cta .btn{height:56px;padding:0 32px;font-size:16px;min-width:180px;width:100%}
+
+/* 차량 이미지 무대: 누끼(투명 배경) 사진이 올라설 자리.
+   패딩 없음 — 차량 바닥이 좌측 본문단 기준선과 맞아야 하고,
+   드롭섀도는 히어로 하단 패딩 위로 자연스럽게 겹치게 둡니다. */
+.hero-stage{
+  position:relative;display:flex;align-items:flex-end;justify-content:center;
+  /* 1단 배치(960px 미만)에서 차량이 본문보다 과하게 커지는 것을 막는 상한.
+     2단(960px 이상)에서는 컬럼 폭이 이미 이보다 좁아 영향이 없습니다. */
+  max-width:520px;margin-inline:auto;
+}
+/* [교체 시 확인] 현재 넥쏘 원본(1360×380)은 차량이 909×334뿐이고 좌우 각 약 225px이
+   투명 여백입니다. 그대로 두면 차가 작게 보여, 여백 비율만큼 키우고 같은 양을 음수 마진으로
+   되돌려 "차량"이 무대 폭의 92%를 채우도록 맞췄습니다. (100%로 두면 컬럼 끝에 딱 붙어
+   화면 밖으로 잘린 것처럼 보입니다.) 넘치는 부분은 전부 투명이며 .hero 의
+   overflow:hidden 이 잘라 냅니다.
+     차량 실폭 비율 909/1360 = 0.668  →  width = 0.92 / 0.668 = 137.7%
+     margin-inline = -(137.7 - 100) / 2 = -18.85%
+   여백 없는 이미지로 바꾸실 때는 아래 세 줄을 width:100%; max-width:560px; margin:0; 으로 되돌려 주세요. */
+.hero-stage__img{
+  flex:none;position:relative;z-index:1;height:auto;
+  width:137.7%;
+  max-width:none;
+  margin-inline:-18.85%;
+  filter:drop-shadow(0 14px 18px rgba(60,48,36,.28));
+}
+
+/* 히어로 진입 모션 (1회, 모션 축소 설정 시 생략) */
+@media (prefers-reduced-motion: no-preference){
+  .hero__eyebrow,.hero h1,.hero__proof,.hero__sub,.hero__cta{
+    animation:heroRise .6s cubic-bezier(.2,.7,.3,1) backwards;
+  }
+  .hero-stage{animation:heroFade .7s ease-out backwards}
+  .hero h1{animation-delay:.08s}
+  .hero__proof{animation-delay:.16s}
+  .hero__sub{animation-delay:.22s}
+  .hero__cta{animation-delay:.3s}
+  .hero-stage{animation-delay:.2s}
+}
+@keyframes heroRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes heroFade{from{opacity:0}to{opacity:1}}
+
+/* ==============================
+   5. 카마스터
+============================== */
+/* 가로형 카드: 사진(좌) + 정보(우). 소개글이 들어가 카드가 길어지므로
+   4열이 아니라 넓은 카드 2열로 배치합니다. */
+.master-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.master-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px;display:flex;gap:16px;
+}
+/* 인물 사진이므로 정사각(.ph--portrait 기본값) 대신 세로형 3:4 로 둡니다.
+   비율을 고정해야 소개글 길이가 카드마다 달라도 사진이 같은 크기로 잘립니다. */
+.master-card__photo{
+  /* height:auto 필수 — img 의 height 속성이 있으면 aspect-ratio 가 무시됩니다 */
+  flex:none;width:96px;height:auto;aspect-ratio:3/4;align-self:flex-start;border-radius:8px;
+  /* 사진 파일은 이미 3:4(360×480)로 잘라 두었습니다. cover 는 다른 비율의 사진으로
+     교체하더라도 찌그러지지 않도록 하는 안전장치입니다. */
+  object-fit:cover;object-position:50% 50%;
+}
+.master-card__body{
+  flex:1;min-width:0;display:flex;flex-direction:column;gap:10px;
+}
+.master-card__name{
+  color:var(--ink);font-weight:700;font-size:17px;letter-spacing:-0.01em;
+}
+/* 이름 옆 뱃지 */
+.master-card__badge{
+  display:inline-block;vertical-align:2px;margin-left:6px;
+  background:var(--gold);color:#fff;   /* Hyundai Gold — 수상·우수 의미에 맞는 공식 CI 색 */
+  font-size:11.5px;font-weight:700;letter-spacing:.02em;
+  padding:2px 8px;border-radius:999px;
+}
+/* 이름 바로 아래 성향 태그 */
+.master-card__tags{
+  margin-top:-4px;
+  color:var(--active-ink);font-weight:600;font-size:12.5px;
+  word-spacing:2px;line-height:1.5;
+}
+/* 기초 정보 — 라벨 폭은 가장 긴 "전문 차종" 기준 */
+.master-card__meta{display:grid;gap:5px;font-size:13.5px}
+.master-card__meta > div{display:flex;gap:8px}
+.master-card__meta dt{flex:none;width:58px;color:var(--muted);font-weight:600}
+.master-card__meta dd{color:var(--body);min-width:0}
+/* 960px 미만에서도 "라벨 + 값"을 한 줄에 유지하기 위한 조정.
+   가장 긴 값(#꼼꼼함 #쉬운설명 #완벽주의)이 13.5px 기준 160px 이라 라벨까지 218px 가
+   필요한데 본문은 204px 뿐입니다. 글자 12px, 사진 84px 로 줄여 192px 로 맞췄습니다. */
+@media (max-width: 959px){
+  .master-card__photo{width:84px}
+  .master-card__meta{gap:6px;font-size:12.5px}
+  .master-card__meta > div{gap:7px}
+  .master-card__meta dt{width:48px}
+}
+/* 375px 미만은 본문이 190px 아래로 떨어져 한 줄이 불가능하므로 라벨을 값 위로 올립니다. */
+@media (max-width: 374px){
+  .master-card__meta{gap:8px}
+  .master-card__meta > div{display:block}
+  .master-card__meta dt{width:auto;margin-bottom:1px}
+}
+/* 소개글 */
+.master-card__intro{
+  margin-top:auto;
+  font-size:14px;color:var(--body);line-height:1.7;
+  padding-top:10px;border-top:1px solid var(--line);
+}
+
+/* ==============================
+   6. 이달의 이벤트
+============================== */
+.event-grid{display:grid;gap:16px}
+.event-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;
+}
+.event-card .ph--car{border-radius:0;border:0;border-bottom:1px dashed var(--ph-line)}
+.event-card__body{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.event-card__body h3{
+  color:var(--ink);font-size:18px;font-weight:700;letter-spacing:-0.01em;
+}
+.event-card__body p{font-size:14.5px;color:var(--body)}
+.event-card__foot{
+  margin-top:auto;padding-top:14px;border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.price-note{color:var(--muted);font-size:13.5px;font-weight:500}
+.event-strip{
+  margin-top:16px;background:var(--navy);color:#fff;border-radius:var(--radius);
+  padding:28px 24px;display:flex;flex-direction:column;gap:16px;
+}
+.event-strip h3{font-size:19px;font-weight:700;letter-spacing:-0.01em}
+.event-strip p{color:#C7D5E6;font-size:14.5px;margin-top:6px}
+.event-strip .btn{align-self:flex-start;background:#fff;color:var(--navy)}
+.event-strip .btn:hover{background:var(--tint)}
+
+/* ==============================
+   7. 상담 폼
+============================== */
+.consult-grid{display:grid;gap:36px}
+.consult-side .section-head{margin-bottom:20px}
+.tel-box{
+  background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px;
+}
+.tel-box__label{color:var(--muted);font-size:13.5px;font-weight:600}
+.tel-box__num{
+  display:inline-block;margin-top:4px;color:var(--navy);
+  font-size:26px;font-weight:800;letter-spacing:.01em;
+}
+.tel-box__hours{margin-top:10px;font-size:14px;color:var(--body);line-height:1.6}
+.consult-form{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 20px;display:flex;flex-direction:column;gap:18px;
+}
+.form-row{display:grid;gap:18px}
+.field label{
+  display:block;color:var(--ink);font-size:14px;font-weight:600;margin-bottom:8px;
+}
+.field label .req{color:#C4302B;margin-left:2px}
+.field input,
+.field select,
+.field textarea{
+  width:100%;border:1px solid var(--line);border-radius:8px;
+  padding:12px 14px;font:inherit;font-size:15px;color:var(--ink);
+  background:#fff;transition:border-color .15s;
+}
+.field input::placeholder,
+.field textarea::placeholder{color:#A6ADB8}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{outline:none;border-color:var(--navy)}
+.field select{
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2369707C' stroke-width='1.6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+}
+.field select:invalid{color:#A6ADB8}
+.field textarea{min-height:110px;resize:vertical}
+.consent{
+  background:var(--bg-alt);border:1px solid var(--line);border-radius:8px;
+  padding:16px;font-size:13.5px;color:var(--body);
+}
+.consent__title{color:var(--ink);font-weight:700;font-size:14px;margin-bottom:8px}
+.consent ul{display:grid;gap:4px}
+.consent li{padding-left:12px;position:relative}
+.consent li::before{content:"";position:absolute;left:0;top:11px;width:4px;height:4px;border-radius:50%;background:var(--muted)}
+.consent__refuse{margin-top:8px;color:var(--muted);font-size:13px}
+.consent__check{
+  margin-top:12px;padding-top:12px;border-top:1px solid var(--line);
+  display:flex;align-items:flex-start;gap:8px;cursor:pointer;
+  color:var(--ink);font-weight:600;font-size:14px;
+}
+.consent__check input{
+  width:18px;height:18px;margin-top:2px;accent-color:var(--navy);flex:none;
+}
+.form-caption{color:var(--muted);font-size:13.5px;text-align:center}
+.form-success{
+  display:none;background:var(--tint);border:1px solid var(--navy);
+  border-radius:8px;padding:16px;color:var(--navy);font-size:14.5px;font-weight:600;line-height:1.6;
+}
+.form-success.is-visible{display:block}
+
+/* ==============================
+   8. 고객 후기
+============================== */
+.review-grid{display:grid;gap:14px}
+.review-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  border-top:3px solid var(--navy);padding:22px 20px;
+}
+.review-card__meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:12px}
+.review-card__name{color:var(--ink);font-weight:700;font-size:15px}
+.review-card__car{color:var(--muted);font-size:13.5px}
+.review-card p{font-size:14.5px;color:var(--body)}
+
+/* ==============================
+   9. 오시는 길
+============================== */
+.location-grid{display:grid;gap:28px}
+.info-list{display:grid;gap:18px}
+.info-list > div{display:flex;gap:14px;align-items:flex-start}
+.info-list dt{
+  flex:none;width:76px;color:var(--muted);font-size:14px;font-weight:600;padding-top:2px;
+}
+.info-list dd{color:var(--ink);font-size:15.5px;line-height:1.6}
+.info-list dd .sub{display:block;color:var(--muted);font-size:14px;margin-top:2px}
+.info-list dd a.tel-link{color:var(--navy);font-weight:700}
+.copy-btn{
+  margin-left:8px;vertical-align:2px;
+  font-size:12.5px;font-weight:600;color:var(--navy);
+  border:1px solid var(--navy);border-radius:6px;padding:3px 8px;
+  transition:background-color .15s;
+}
+.copy-btn:hover{background:var(--tint)}
+.map-actions{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
+.location-note{
+  margin-top:22px;padding:14px 16px;background:var(--bg-alt);
+  border-radius:8px;font-size:14px;color:var(--body);
+}
+
+/* ==============================
+   10. 푸터
+============================== */
+.site-footer{background:var(--navy-dark);color:#9FB0C6;padding:44px 0 36px;font-size:13.5px}
+.site-footer__brand{color:#fff;font-weight:700;font-size:16px;letter-spacing:-0.01em}
+.site-footer address{font-style:normal;margin-top:14px;line-height:1.9}
+.site-footer address a{color:#D2DCE9;font-weight:600}
+.site-footer__legal{margin-top:14px;line-height:1.9}
+.site-footer__legal a{text-decoration:underline;text-underline-offset:3px}
+.site-footer__notice{margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14);color:#7E90A8;font-size:12.5px;line-height:1.8}
+
+/* ==============================
+   11. 반응형
+============================== */
+@media (min-width: 768px){
+  .section{padding:88px 0}
+  .section-head p{font-size:16px}
+  .gnb{display:flex;gap:28px;font-size:15px;font-weight:600;color:var(--body)}
+  .gnb a:hover{color:var(--navy)}
+  .hero{padding:88px 0 80px}
+  .hero__cta .btn{width:auto}
+  .master-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .event-grid{grid-template-columns:repeat(3,1fr)}
+  .event-strip{
+    flex-direction:row;align-items:center;justify-content:space-between;
+    padding:32px 36px;
+  }
+  .event-strip .btn{flex:none;align-self:center}
+  .form-row--2col{grid-template-columns:1fr 1fr}
+  .review-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (min-width: 960px){
+  /* 2단 배치에서는 본문이 가로로 퍼져 히어로가 짧아집니다(보이는 영역의 71%).
+     1단 구간은 이미 75~96%라 손대지 않고 여기서만 상하 여백을 키웁니다. */
+  .hero{padding:120px 0 112px}
+  .hero-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px;align-items:end}
+  .master-grid{gap:20px}
+  .master-card{padding:20px;gap:20px}
+  .master-card__photo{width:120px}
+  .consult-grid{grid-template-columns:5fr 7fr;gap:56px;align-items:start}
+  .consult-form{padding:32px}
+  .location-grid{grid-template-columns:5fr 7fr;gap:56px;align-items:start}
+}
+
+/* 섹션 앵커 이동 시 고정 헤더 보정 */
+section[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none !important}
+}
+</style>
 </head>
-<body data-page="home">
+<body>
 
-  <!-- ===== 헤더 ===== -->
-  <header class="site-header" id="siteHeader">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="현대자동차 통일로대리점 홈으로">
-        <span class="brand-mark" aria-hidden="true">
-          <img src="img/logo_footer.avif" alt="" />
-        </span>
-        <span class="brand-text"><small>현대자동차</small><strong>통일로대리점</strong></span>
-      </a>
-      <nav class="main-nav" aria-label="주요 메뉴">
-        <a class="nav-link" href="masters.html">카마스터</a>
-        <a class="nav-link" href="events.html">이벤트</a>
-        <a class="nav-link" href="posts.html">콘텐츠</a>
-        <a class="nav-link" href="contact.html#visit">오시는 길</a>
-      </nav>
-      <a class="btn btn-primary header-cta" href="contact.html">상담 신청</a>
-      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="메뉴 열기">
-        <svg class="ic-menu" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        <svg class="ic-close" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
+<a class="skip-link" href="#masters">본문 바로가기</a>
+
+<!-- ===== 고정 헤더 ===== -->
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <div class="brand">
+      <img class="brand__logo" src="Hyundai_Motor_Company_logo.svg.webp" alt="현대자동차" width="960" height="124">
+      <span class="brand__divider" aria-hidden="true"></span>
+      <span class="brand__name">통일로대리점</span>
     </div>
-  </header>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="masters.html">카마스터</a>
-    <a href="events.html">이벤트</a>
-    <a href="posts.html">콘텐츠</a>
-    <a href="contact.html#visit">오시는 길</a>
-    <a class="btn btn-primary btn-block" href="contact.html">상담 신청하기</a>
+    <nav class="gnb" aria-label="주요 메뉴">
+      <a href="#masters">카마스터</a>
+      <a href="#events">이달의 이벤트</a>
+      <a href="#reviews">고객 후기</a>
+      <a href="#location">오시는 길</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn--primary btn--sm" href="#consult">상담 신청</a>
+    </div>
   </div>
+</header>
 
-  <main>
-    <!-- ===== 히어로 ===== -->
-    <section class="hero on-dark">
-      <div class="container hero-inner">
-        <span class="eyebrow">현대자동차 통일로대리점</span>
-        <h1 class="hero-title">차를 고르셨다면,<br>이제 <em>사람</em>을 고를 차례입니다</h1>
-        <p class="hero-sub">견적부터 보조금, 출고 이후 관리까지 — 신차 구매의 경험은 상담하는 사람이 만듭니다. 통일로대리점은 실적과 고객 만족도 기준을 통과한 카마스터가 전담합니다.</p>
-        <div class="hero-actions">
-          <a class="btn btn-light btn-lg" href="contact.html">상담 신청하기</a>
-          <a class="btn btn-ghost-dark btn-lg" href="masters.html">카마스터 먼저 보기</a>
-        </div>
-        <div class="hero-foot">
-          <div class="roadline roadline--dark" aria-hidden="true"></div>
-          <span>통일로 위, 2005년부터 한자리</span>
-        </div>
-      </div>
-    </section>
+<main>
 
-    <!-- ===== 페인 포인트 ===== -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head center" data-reveal>
-          <span class="eyebrow">왜 카마스터인가</span>
-          <h2 class="section-title">혹시, 이런 고민 하고 계신가요?</h2>
-          <p class="section-lead">차 고르기보다 어려운 것이 구매 과정입니다. 그래서 사람이 중요합니다.</p>
-        </div>
-        <div class="pain-grid stagger">
-          <article class="pain-card">
-            <div class="pain-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12.9 21a2 2 0 0 1-2.8 0L3 13.9V4a1 1 0 0 1 1-1h9.9l6.7 6.6a2 2 0 0 1 0 2.8z"/><circle cx="7.6" cy="7.6" r="1.3"/></svg>
-            </div>
-            <h3>복잡한 혜택</h3>
-            <p>프로모션·보조금은 시기와 조건이 수시로 바뀝니다. 미리 아는 만큼 아낄 수 있습니다.</p>
-          </article>
-          <article class="pain-card">
-            <div class="pain-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.4 9a2.6 2.6 0 0 1 5.1.6c0 1.7-2.5 2.2-2.5 3.6"/><path d="M12 16.8h.01"/></svg>
-            </div>
-            <h3>쏟아지는 정보</h3>
-            <p>트림, 옵션, 금융 조건까지 따져볼 것이 많습니다. 혼자 정리하기엔 벅찬 정보량입니다.</p>
-          </article>
-          <article class="pain-card">
-            <div class="pain-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
-            </div>
-            <h3>계약 이후의 일들</h3>
-            <p>출고, 등록, 사후 관리까지 챙길 일이 이어집니다. 계약은 끝이 아니라 시작입니다.</p>
-          </article>
-        </div>
-        <p class="bridge" data-reveal>그래서 통일로대리점은,<br><em>준비된 카마스터를 소개합니다.</em></p>
-      </div>
-    </section>
-
-    <!-- ===== 근거 있는 자신감 ===== -->
-    <section class="section section--navy on-dark">
-      <div class="container">
-        <div class="section-head" data-reveal>
-          <span class="eyebrow">근거 있는 자신감</span>
-          <h2 class="section-title">믿어달라는 말 대신,<br>저희 기준을 보여드립니다</h2>
-          <p class="section-lead">통일로대리점의 우수 카마스터 명단에는 아래 네 가지 기준을 통과한 사람만 오릅니다.</p>
-        </div>
-        <div class="stats-grid stagger">
-          <div class="stat">
-            <div class="stat-num" data-stat="delivered"><b>0</b><span class="stat-unit">대</span></div>
-            <div class="stat-label">누적 출고</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num" data-stat="avgCareer"><b>0</b><span class="stat-unit">년</span></div>
-            <div class="stat-label">카마스터 평균 경력</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num" data-stat="repeatRate"><b>0</b><span class="stat-unit">%</span></div>
-            <div class="stat-label">재구매·소개 비율</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num" data-stat="satisfaction" data-dec="1"><b>0</b><span class="stat-unit">/ 5.0</span></div>
-            <div class="stat-label">상담 만족도</div>
+  <!-- ===== 히어로 ===== -->
+  <section class="hero" aria-label="대리점 소개">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="hero__eyebrow">현대자동차 공식 대리점</p>
+          <h1>차종 선택부터 신차 관리까지<br><span class="accent">전문 카마스터</span>가 설계해 드립니다</h1>
+          <p class="hero__proof">25년 업력, 누적 출고 대수 1만 건 이상</p>
+          <p class="hero__sub">복잡한 자동차 구매 계획은 전문가의 상담이 필요합니다.<br>금액과 연비, 관리 계획까지. 구매 컨설팅을 먼저 받아보세요.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#consult">상담 신청</a>
           </div>
         </div>
-        <div class="standards stagger">
-          <div class="standard-item">
-            <span class="check-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
-            <div>
-              <h3>현대자동차 정식 판매 자격</h3>
-              <p>본사 교육 과정을 이수한 공식 카마스터만 근무합니다.</p>
-            </div>
-          </div>
-          <div class="standard-item">
-            <span class="check-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
-            <div>
-              <h3>매년 실적·만족도 재심사</h3>
-              <p>판매 실적과 고객 만족도를 연 단위로 심사해 명단을 갱신합니다.</p>
-            </div>
-          </div>
-          <div class="standard-item">
-            <span class="check-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
-            <div>
-              <h3>견적부터 사후 관리까지 전담</h3>
-              <p>상담한 카마스터가 출고와 그 이후까지 책임집니다. 담당이 바뀌지 않습니다.</p>
-            </div>
-          </div>
-          <div class="standard-item">
-            <span class="check-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
-            <div>
-              <h3>혜택 선제 안내 의무</h3>
-              <p>프로모션·세제 혜택·보조금을 고객이 묻기 전에 먼저 안내합니다.</p>
-            </div>
-          </div>
-        </div>
-        <p class="standards-note" data-reveal>기준에 못 미치면, 우수 카마스터 명단에서 제외됩니다.</p>
-      </div>
-    </section>
-
-    <!-- ===== 우수 카마스터 프리뷰 ===== -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head center" data-reveal>
-          <span class="eyebrow">우수 카마스터</span>
-          <h2 class="section-title">고객이 다시 찾는 사람들</h2>
-          <p class="section-lead">이번 심사를 통과한 6명 중, 오늘도 상담 중인 카마스터를 먼저 소개합니다.</p>
-        </div>
-        <div class="masters-grid stagger" id="homeMasters"></div>
-        <div class="section-more" data-reveal>
-          <a class="link-arrow" href="masters.html">6명 전체 프로필 보기</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== 고객 후기 ===== -->
-    <section class="section section--sand">
-      <div class="container">
-        <div class="section-head center" data-reveal>
-          <span class="eyebrow">고객 후기</span>
-          <h2 class="section-title">먼저 만난 고객들의 이야기</h2>
-          <p class="section-lead">별점보다 문장을 읽어 보세요. 어떤 상담이었는지가 보입니다.</p>
-        </div>
-        <div class="reviews-grid stagger" id="homeReviews"></div>
-        <div class="section-more" data-reveal>
-          <a class="link-arrow" href="masters.html">카마스터별 후기 더 보기</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== 이벤트 · 콘텐츠 프리뷰 ===== -->
-    <section class="section section--mist">
-      <div class="container">
-        <div class="section-head" data-reveal>
-          <span class="eyebrow">새 소식</span>
-          <h2 class="section-title">이벤트와 콘텐츠</h2>
-          <p class="section-lead">대리점이 직접 준비한 혜택과, 카마스터가 직접 쓴 글입니다.</p>
-        </div>
-        <div class="duo-grid stagger">
-          <div class="panel">
-            <div class="panel-head">
-              <h3>진행 중인 이벤트</h3>
-              <a class="link-arrow" href="events.html">전체 보기</a>
-            </div>
-            <div class="mini-list" id="homeEvents"></div>
-          </div>
-          <div class="panel">
-            <div class="panel-head">
-              <h3>최근 콘텐츠</h3>
-              <a class="link-arrow" href="posts.html">전체 보기</a>
-            </div>
-            <div class="mini-list" id="homePosts"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== 마지막 CTA ===== -->
-    <section class="cta-band">
-      <div class="container" data-reveal>
-        <h2 class="cta-title">이번 주, 부담 없이 물어보세요</h2>
-        <p class="cta-sub">견적 비교만 원하셔도 좋습니다. 아는 만큼 알려드리고, 결정은 고객의 몫으로 남겨 두겠습니다.</p>
-        <div class="cta-actions">
-          <a class="btn btn-light btn-lg" href="contact.html">상담 신청하기</a>
-          <a class="btn btn-kakao btn-lg" data-site-href="kakao" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.8 1.86 5.26 4.66 6.68-.15.52-.96 3.3-.99 3.52 0 0-.02.17.09.24.11.07.24.02.24.02.32-.05 3.65-2.4 4.23-2.81.57.08 1.16.13 1.77.13 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/></svg>
-            카카오톡 채널
-          </a>
-        </div>
-        <p class="cta-phone">전화가 편하시다면 <a data-site-href="tel" data-site="phone" href="#">031-962-7244</a></p>
-      </div>
-    </section>
-  </main>
-
-  <!-- ===== 푸터 ===== -->
-  <footer class="site-footer">
-    <div class="footer-top">
-      <div class="container footer-grid">
-        <div class="f-brand">
-          <div class="brand-text"><strong data-site="name">현대자동차 통일로대리점</strong></div>
-          <p>
-            <span data-site="address">경기도 고양시 덕양구 통일로 796</span><br>
-            <span data-site="hours">평일·주말 09:00 – 19:00 · 연중무휴</span><br>
-            대표번호 <a data-site-href="tel" data-site="phone" href="#">031-962-7244</a>
-          </p>
-        </div>
-        <div class="f-col">
-          <h3 class="f-title">바로가기</h3>
-          <ul>
-            <li><a href="masters.html">우수 카마스터</a></li>
-            <li><a href="events.html">이벤트</a></li>
-            <li><a href="posts.html">차량 관리 · 상품 콘텐츠</a></li>
-            <li><a href="contact.html">상담 신청</a></li>
-          </ul>
-        </div>
-        <div class="f-col">
-          <h3 class="f-title">상담 채널</h3>
-          <ul>
-            <li><a data-site-href="tel" href="#">전화 상담</a></li>
-            <li><a data-site-href="kakao" href="#" target="_blank" rel="noopener">카카오톡 채널</a></li>
-            <li><a href="contact.html">온라인 상담 신청</a></li>
-            <li><a data-site-href="map" href="#" target="_blank" rel="noopener">카카오맵에서 위치 보기</a></li>
-          </ul>
+        <!-- [교체] 대표 차종을 바꾸실 때는 아래 <img>의 src와 alt만 바꿔 주세요.
+             배경 투명(누끼) 이미지, 폭 1200px 이상 권장 -->
+        <div class="hero-stage">
+          <img class="hero-stage__img"
+               src="Main-KV_Car_The%20all-new%20NEXO.avif"
+               alt="디 올 뉴 넥쏘"
+               width="1360" height="380"
+               fetchpriority="high" decoding="async">
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="container">
-        <span>© <span id="year">2026</span> 현대자동차 통일로대리점 · 본 페이지의 인물·후기·수치는 예시 데이터입니다.</span>
-        <span>사업자등록번호 000-00-00000 · 대표 000</span>
+  </section>
+
+  <!-- ===== 카마스터 ===== -->
+  <section class="section" id="masters">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-head__eyebrow">카마스터 라인업</p>
+        <h2>전문가의 무료 상담을 받아보세요</h2>
+        <p>수년의 상담 경력을 가진 카마스터가 신차 계획 시 필요한 부분을 친절히 안내해 드립니다</p>
+      </header>
+      <ul class="master-grid">
+        <!-- 소개글을 고치실 때는 2~3줄(60~90자)로 길이를 맞추면
+             같은 행의 카드 높이가 고르게 보입니다. -->
+        <li class="master-card">
+          <img class="master-card__photo" src="master-1.jpg"
+               alt="박우식 카마스터" width="360" height="480" loading="lazy" decoding="async">
+          <div class="master-card__body">
+            <p class="master-card__name">박우식 카마스터<span class="master-card__badge">우수</span></p>
+            <p class="master-card__tags">#꼼꼼함 #쉬운설명 #완벽주의</p>
+            <dl class="master-card__meta">
+              <div><dt>전문 차종</dt><dd>제네시스, 전기차</dd></div>
+              <div><dt>경력</dt><dd>9년</dd></div>
+            </dl>
+            <p class="master-card__intro">복잡한 옵션과 보조금 조건을 하나씩 짚어 드립니다. 놓치는 부분 없이 끝까지 챙기겠습니다.</p>
+          </div>
+        </li>
+        <li class="master-card">
+          <img class="master-card__photo" src="master-2.jpg"
+               alt="김하늘 카마스터" width="360" height="480" loading="lazy" decoding="async">
+          <div class="master-card__body">
+            <p class="master-card__name">김하늘 카마스터</p>
+            <p class="master-card__tags">#친근함 #트렌디 #다정함</p>
+            <dl class="master-card__meta">
+              <div><dt>전문 차종</dt><dd>SUV, 아반떼, 쏘나타</dd></div>
+              <div><dt>경력</dt><dd>7년</dd></div>
+            </dl>
+            <p class="master-card__intro">첫 차 고민부터 편하게 말씀해 주세요. 생활 패턴에 맞는 차급부터 함께 정해 드립니다.</p>
+          </div>
+        </li>
+        <li class="master-card">
+          <img class="master-card__photo" src="master-3.jpg"
+               alt="하연석 카마스터" width="360" height="480" loading="lazy" decoding="async">
+          <div class="master-card__body">
+            <p class="master-card__name">하연석 카마스터</p>
+            <p class="master-card__tags">#유머 #시원시원함</p>
+            <dl class="master-card__meta">
+              <div><dt>전문 차종</dt><dd>중형세단, 그랜저, 팰리세이드</dd></div>
+              <div><dt>경력</dt><dd>13년</dd></div>
+            </dl>
+            <p class="master-card__intro">오래 쌓은 출고 경험으로 대기 기간과 조건을 솔직하게 말씀드립니다.</p>
+          </div>
+        </li>
+        <li class="master-card">
+          <img class="master-card__photo" src="master-4.jpg"
+               alt="정현철 카마스터" width="360" height="480" loading="lazy" decoding="async">
+          <div class="master-card__body">
+            <p class="master-card__name">정현철 카마스터</p>
+            <p class="master-card__tags">#연륜 #나긋나긋 #든든함</p>
+            <dl class="master-card__meta">
+              <div><dt>전문 차종</dt><dd>SUV, 아반떼, 쏘나타</dd></div>
+              <div><dt>경력</dt><dd>21년</dd></div>
+            </dl>
+            <p class="master-card__intro">서두르지 않고 예산과 유지비까지 함께 따져 보시도록 돕겠습니다.</p>
+          </div>
+        </li>
+      </ul>
+      <p class="section-note">전화 주시면 문의 내용에 맞는 담당 카마스터를 바로 연결해 드립니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== 이달의 이벤트 ===== -->
+  <section class="section section--alt" id="events">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-head__eyebrow">프로모션</p>
+        <h2>이달의 이벤트</h2>
+        <p>행사 내용과 판매 조건은 매월 달라집니다. 세부 조건은 전화로 확인해 주시기 바랍니다.</p>
+      </header>
+      <!-- [교체] 이벤트 3건은 예시 문안입니다. 매월 실제 프로모션 내용으로 바꿔 주세요 -->
+      <div class="event-grid">
+        <article class="event-card">
+          <div class="ph ph--car" role="img" aria-label="그랜저 차량 이미지 자리">[그랜저 이미지 교체]</div>
+          <div class="event-card__body">
+            <span class="chip">출고 상담</span>
+            <h3>그랜저 이달의 출고 상담</h3>
+            <p>실시간 출고 대기 기간과 이달 판매 조건을 확인해 드립니다. 트림별 견적을 비교해 보시고 결정하셔도 됩니다.</p>
+            <div class="event-card__foot">
+              <span class="price-note">판매 조건 · 가격 문의</span>
+              <a class="btn btn--line btn--sm js-event-cta" href="#consult" data-car="그랜저">상담 신청</a>
+            </div>
+          </div>
+        </article>
+        <article class="event-card">
+          <div class="ph ph--car" role="img" aria-label="싼타페 차량 이미지 자리">[싼타페 이미지 교체]</div>
+          <div class="event-card__body">
+            <span class="chip">시승</span>
+            <h3>싼타페 주말 시승 예약</h3>
+            <p>평일 방문이 어려우신 분은 주말 시승으로 예약해 드립니다. 원하시는 일정을 미리 말씀해 주시면 차량을 준비해 두겠습니다.</p>
+            <div class="event-card__foot">
+              <span class="price-note">시승 일정 · 전화 문의</span>
+              <a class="btn btn--line btn--sm js-event-cta" href="#consult" data-car="싼타페">상담 신청</a>
+            </div>
+          </div>
+        </article>
+        <article class="event-card">
+          <div class="ph ph--car" role="img" aria-label="아이오닉 5 차량 이미지 자리">[아이오닉 5 이미지 교체]</div>
+          <div class="event-card__body">
+            <span class="chip">전기차</span>
+            <h3>아이오닉 5 구매 지원 안내</h3>
+            <p>전기차 보조금은 지자체 예산에 따라 달라집니다. 잔여 현황 확인부터 신청 절차, 충전기 설치 안내까지 함께 도와드립니다.</p>
+            <div class="event-card__foot">
+              <span class="price-note">보조금 현황 · 전화 문의</span>
+              <a class="btn btn--line btn--sm js-event-cta" href="#consult" data-car="아이오닉 5">상담 신청</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="event-strip">
+        <div>
+          <h3>할부 · 리스 · 장기렌트 비교 견적</h3>
+          <p>같은 차종이라도 구매 방식에 따라 월 납입 부담이 달라집니다. 조건별 견적서를 나란히 놓고 비교해 드립니다.</p>
+        </div>
+        <a class="btn" href="#consult">상담 신청</a>
       </div>
     </div>
-  </footer>
+  </section>
 
-  <!-- ===== 모바일 하단 CTA ===== -->
-  <div class="mobile-bar">
-    <a class="btn btn-kakao" data-site-href="kakao" href="#" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.8 1.86 5.26 4.66 6.68-.15.52-.96 3.3-.99 3.52 0 0-.02.17.09.24.11.07.24.02.24.02.32-.05 3.65-2.4 4.23-2.81.57.08 1.16.13 1.77.13 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/></svg>
-      카카오톡 상담
-    </a>
-    <a class="btn btn-primary" href="contact.html">상담 신청</a>
+  <!-- ===== 상담 폼 ===== -->
+  <section class="section" id="consult">
+    <div class="container consult-grid">
+      <div class="consult-side">
+        <header class="section-head">
+          <p class="section-head__eyebrow">온라인 문의</p>
+          <h2>상담 신청</h2>
+          <p>남겨 주신 내용은 담당 카마스터가 확인한 뒤 영업시간 내에 순차적으로 연락드립니다.</p>
+        </header>
+        <div class="tel-box">
+          <p class="tel-box__label">전화가 더 편하시다면</p>
+          <a class="tel-box__num" href="tel:031-962-7244">031-962-7244</a>
+          <p class="tel-box__hours">평일 09:00~20:00<br>주말·공휴일 09:00~18:00</p>
+        </div>
+      </div>
+
+      <form class="consult-form" id="consultForm" action="#consult" method="post" novalidate>
+        <div class="form-success" id="formSuccess" role="status"></div>
+        <div class="form-row form-row--2col">
+          <div class="field">
+            <label for="fName">이름<span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="fName" name="name" placeholder="성함을 입력해 주십시오" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="fPhone">연락처<span class="req" aria-hidden="true">*</span></label>
+            <input type="tel" id="fPhone" name="phone" placeholder="010-0000-0000" inputmode="numeric" autocomplete="tel" maxlength="13" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fCar">관심 차종<span class="req" aria-hidden="true">*</span></label>
+          <select id="fCar" name="car" required>
+            <option value="" disabled selected>차종을 선택해 주십시오</option>
+            <option value="캐스퍼">캐스퍼</option>
+            <option value="캐스퍼 일렉트릭">캐스퍼 일렉트릭</option>
+            <option value="아반떼">아반떼</option>
+            <option value="쏘나타 디 엣지">쏘나타 디 엣지</option>
+            <option value="그랜저">그랜저</option>
+            <option value="코나">코나</option>
+            <option value="투싼">투싼</option>
+            <option value="싼타페">싼타페</option>
+            <option value="팰리세이드">팰리세이드</option>
+            <option value="아이오닉 5">아이오닉 5</option>
+            <option value="아이오닉 6">아이오닉 6</option>
+            <option value="아이오닉 9">아이오닉 9</option>
+            <option value="스타리아">스타리아</option>
+            <option value="포터 등 상용차">포터 등 상용차</option>
+            <option value="기타 · 미정">기타 · 미정</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fMsg">문의 내용</label>
+          <textarea id="fMsg" name="message" placeholder="희망 트림, 출고 시기, 구매 방식(할부·리스·장기렌트) 등을 적어 주시면 상담이 빠릅니다."></textarea>
+        </div>
+
+        <div class="consent">
+          <p class="consent__title">개인정보 수집·이용 안내</p>
+          <ul>
+            <li>수집 항목: 이름, 연락처, 관심 차종, 문의 내용</li>
+            <li>수집·이용 목적: 차량 구매 상담 및 견적 안내</li>
+            <li>보유·이용 기간: 상담 완료 후 1년 보관 뒤 파기</li>
+          </ul>
+          <p class="consent__refuse">동의를 거부하실 수 있으며, 거부하시는 경우 상담 신청이 제한됩니다.</p>
+          <label class="consent__check">
+            <input type="checkbox" id="fConsent" name="consent" required>
+            <span>개인정보 수집·이용에 동의합니다 (필수)</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn--primary">상담 신청</button>
+        <p class="form-caption">접수 후 영업시간 내에 입력하신 연락처로 연락드립니다.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== 고객 후기 ===== -->
+  <section class="section section--alt" id="reviews">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-head__eyebrow">구매 고객 이야기</p>
+        <h2>고객 후기</h2>
+        <p>통일로대리점에서 출고하신 고객님들이 남겨 주신 후기입니다.</p>
+      </header>
+      <!-- [교체] 후기 3건은 예시 문안입니다. 실제 고객 후기로 바꿔 주세요 -->
+      <div class="review-grid">
+        <article class="review-card">
+          <div class="review-card__meta">
+            <span class="review-card__name">김○○ 고객님</span>
+            <span class="review-card__car">그랜저 하이브리드 · 2026년 4월 출고</span>
+          </div>
+          <p>여러 곳에서 견적을 받아 봤는데 조건 설명이 가장 정확했습니다. 서류 준비부터 출고일 안내까지 먼저 연락을 주셔서 기다리는 동안 답답할 일이 없었습니다.</p>
+        </article>
+        <article class="review-card">
+          <div class="review-card__meta">
+            <span class="review-card__name">박○○ 고객님</span>
+            <span class="review-card__car">싼타페 · 2026년 6월 출고</span>
+          </div>
+          <p>첫 차라 할부와 장기렌트 사이에서 고민이 많았는데, 방식별 월 납입금을 나란히 비교해 주셔서 결정이 한결 쉬웠습니다.</p>
+        </article>
+        <article class="review-card">
+          <div class="review-card__meta">
+            <span class="review-card__name">이○○ 고객님</span>
+            <span class="review-card__car">아이오닉 5 · 2026년 2월 출고</span>
+          </div>
+          <p>보조금 신청 절차를 대신 챙겨 주셔서 서류 때문에 헤맬 일이 없었습니다. 출고 후에도 충전 관련 문의에 바로 답해 주십니다.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 오시는 길 ===== -->
+  <section class="section" id="location">
+    <div class="container location-grid">
+      <div>
+        <header class="section-head">
+          <p class="section-head__eyebrow">매장 안내</p>
+          <h2>오시는 길</h2>
+          <p>방문 전 전화 주시면 상담 대기 없이 안내해 드립니다.</p>
+        </header>
+        <dl class="info-list">
+          <div>
+            <dt>주소</dt>
+            <dd>
+              경기도 고양시 덕양구 통일로 796
+              <button type="button" class="copy-btn" id="copyAddr">주소 복사</button>
+            </dd>
+          </div>
+          <div>
+            <dt>대표번호</dt>
+            <dd><a class="tel-link" href="tel:031-962-7244">031-962-7244</a></dd>
+          </div>
+          <div>
+            <dt>영업시간</dt>
+            <dd>
+              평일 09:00~20:00
+              <span class="sub">주말·공휴일 09:00~18:00</span>
+            </dd>
+          </div>
+        </dl>
+        <p class="location-note">대리점 앞 주차가 가능합니다. 만차 시 전화 주시면 인근 주차를 안내해 드립니다.</p>
+      </div>
+      <div>
+        <!-- [교체] 네이버 지도 임베드(iframe 또는 지도 API)를 이 자리에 넣어 주세요 -->
+        <div class="ph ph--map" role="img" aria-label="네이버 지도 자리">[네이버 지도 영역 교체]</div>
+        <div class="map-actions">
+          <a class="btn btn--primary" href="https://map.naver.com/p/search/%ED%98%84%EB%8C%80%EC%9E%90%EB%8F%99%EC%B0%A8%20%ED%86%B5%EC%9D%BC%EB%A1%9C%EB%8C%80%EB%A6%AC%EC%A0%90" target="_blank" rel="noopener">네이버지도 길찾기</a>
+          <a class="btn btn--line" href="tel:031-962-7244">전화 상담</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 푸터 ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <p class="site-footer__brand">현대자동차 통일로대리점</p>
+    <address>
+      경기도 고양시 덕양구 통일로 796<br>
+      대표번호 <a href="tel:031-962-7244">031-962-7244</a><br>
+      평일 09:00~20:00 · 주말·공휴일 09:00~18:00
+    </address>
+    <!-- [교체] 대표자명·사업자등록번호를 실제 정보로 바꾸고, 개인정보 처리방침 링크를 연결해 주세요 -->
+    <p class="site-footer__legal">
+      대표: [성함 교체] · 사업자등록번호: [번호 교체]<br>
+      <a href="#">개인정보 처리방침</a>
+    </p>
+    <p class="site-footer__notice">
+      게시된 행사 내용과 판매 조건, 차량 사양은 회사 사정에 따라 예고 없이 변경될 수 있습니다.<br>
+      © <span id="year">2026</span> 현대자동차 통일로대리점
+    </p>
   </div>
+</footer>
 
-  <script src="js/data.js"></script>
-  <script src="js/script.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* 헤더: 스크롤 시 그림자 */
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function () {
+    header.classList.toggle('is-scrolled', window.scrollY > 4);
+  }, { passive: true });
+
+  /* 연락처 입력: 자동 하이픈 */
+  var phoneInput = document.getElementById('fPhone');
+  phoneInput.addEventListener('input', function () {
+    var d = this.value.replace(/\D/g, '').slice(0, 11);
+    var out = d;
+    if (d.length >= 8) out = d.replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3');
+    else if (d.length >= 4) out = d.replace(/(\d{3})(\d+)/, '$1-$2');
+    this.value = out;
+  });
+
+  /* 이벤트 카드 버튼: 관심 차종 자동 선택 후 폼으로 이동 */
+  var carSelect = document.getElementById('fCar');
+  document.querySelectorAll('.js-event-cta').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var car = this.getAttribute('data-car');
+      if (car) carSelect.value = car;
+    });
+  });
+
+  /* 상담 폼: 데모 전송 처리
+     TODO(실제 연동): 아래 주석 위치에서 fetch()로 수집 서버(폼 수집 서비스,
+     구글 앱스 스크립트, 자체 API 등)에 데이터를 전송하도록 교체해 주세요. */
+  var form = document.getElementById('consultForm');
+  var successBox = document.getElementById('formSuccess');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    var data = Object.fromEntries(new FormData(form));
+    console.log('[데모] 상담 신청 데이터:', data);
+    /* ── 실제 전송 코드 삽입 위치 ── */
+    successBox.textContent = data.name + '님, 상담 신청이 접수되었습니다. 영업시간 내에 ' + data.phone + ' 번호로 연락드리겠습니다.';
+    successBox.classList.add('is-visible');
+    form.reset();
+    successBox.scrollIntoView({ block: 'center' });
+  });
+
+  /* 주소 복사 */
+  var copyBtn = document.getElementById('copyAddr');
+  copyBtn.addEventListener('click', function () {
+    var addr = '경기도 고양시 덕양구 통일로 796';
+    function done() {
+      copyBtn.textContent = '복사 완료';
+      setTimeout(function () { copyBtn.textContent = '주소 복사'; }, 1600);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(addr).then(done);
+    } else {
+      var t = document.createElement('textarea');
+      t.value = addr; document.body.appendChild(t); t.select();
+      document.execCommand('copy'); document.body.removeChild(t); done();
+    }
+  });
+
+  /* 푸터 연도 자동 갱신 */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
 </body>
 </html>
